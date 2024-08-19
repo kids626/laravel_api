@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+//實做implements JWTSubject 的驗證方式
+class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -41,4 +43,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //取得JWT變識字串
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    //回傳鍵值陣列,內容包括被加入JWT的自定義Payload
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 }
