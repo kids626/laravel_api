@@ -55,4 +55,11 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    //WT SECRET 是什麼？ 要部署jwt需要下php artisan jwt:secret
+
+    //JWT (JSON Web Token) SECRET 是一個字串，用來加密和解密 JWT，確保 JWT 的安全性。
+    //在使用 JWT 簽署和驗證時，需要提供 SECRET 以保證 JWT 的正確性和完整性。
+    //SECRET 通常是一個長度適當且具有隨機性的字串，可以是任何內容，只要保證在簽署和驗證 
+    //JWT 時使用相同的 SECRET 即可。請注意，SECRET 必須保密，不應公開或在不安全的地方儲存。
 }
